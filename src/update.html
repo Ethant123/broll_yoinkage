@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Checking for Updates</title>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        font-family: "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        background: #24303d;
+        color: #f8fafc;
+      }
+      body {
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+      .card {
+        width: min(100%, 460px);
+        border-radius: 24px;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(15,23,42,0.78);
+        backdrop-filter: blur(22px);
+        box-shadow: 0 20px 48px rgba(15,23,42,0.28);
+        padding: 24px;
+      }
+      .eyebrow {
+        display: inline-flex;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.10);
+        background: rgba(255,255,255,0.08);
+        padding: 4px 10px;
+        font-size: 12px;
+        margin-bottom: 14px;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 24px;
+        line-height: 1.2;
+      }
+      p {
+        margin: 0;
+        color: rgba(226,232,240,0.88);
+        line-height: 1.45;
+      }
+      .meta {
+        margin-top: 14px;
+        font-size: 13px;
+        color: rgba(186,230,253,0.92);
+      }
+      .spinner {
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        border: 3px solid rgba(255,255,255,0.14);
+        border-top-color: rgba(125,211,252,0.9);
+        animation: spin 0.9s linear infinite;
+        margin-bottom: 18px;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 22px;
+      }
+      button {
+        height: 38px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.08);
+        color: #f8fafc;
+        padding: 0 14px;
+        font: inherit;
+        cursor: pointer;
+      }
+      button.primary {
+        background: rgba(56,189,248,0.2);
+        border-color: rgba(125,211,252,0.35);
+      }
+      button:hover {
+        transform: scale(1.01);
+      }
+      button:active {
+        transform: scale(0.99);
+      }
+      .hidden {
+        display: none;
+      }
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="eyebrow">B-Roll Downloader</div>
+      <div id="spinner" class="spinner"></div>
+      <h1 id="title">Checking for updates…</h1>
+      <p id="message">Please wait while we check GitHub for the latest release.</p>
+      <div id="meta" class="meta"></div>
+      <div id="actions" class="actions hidden">
+        <button id="downloadBtn" class="primary">Download Latest Version</button>
+        <button id="quitBtn">Quit</button>
+      </div>
+    </div>
+  </body>
+</html>

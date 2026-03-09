@@ -44,12 +44,18 @@ module.exports = {
                 js: './src/preload.js',
               },
             },
+            {
+              html: './src/update.html',
+              js: './src/updateRenderer.js',
+              name: 'update_window',
+              preload: {
+                js: './src/preload.js',
+              },
+            },
           ],
         },
       },
     },
-    // Fuses are used to enable/disable various Electron functionality
-    // at package time, before code signing the application
     new FusesPlugin({
       version: FuseVersion.V1,
       [FuseV1Options.RunAsNode]: false,

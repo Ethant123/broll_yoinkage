@@ -1,7 +1,7 @@
 {
   "name": "broll-yoinkage",
   "productName": "B-Roll Downloader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "B-Roll Downloader for team use",
   "main": ".webpack/main",
   "private": true,
