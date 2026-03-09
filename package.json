@@ -1,8 +1,8 @@
 {
-  "name": "temp_shell",
-  "productName": "temp_shell",
+  "name": "broll-yoinkage",
+  "productName": "B-Roll Downloader",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "B-Roll Downloader for team use",
   "main": ".webpack/main",
   "private": true,
   "scripts": {
