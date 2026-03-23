@@ -1,0 +1,41 @@
+name: Native Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+jobs:
+  build-release:
+    runs-on: macos-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Resolve release version
+        id: version
+        shell: bash
+        run: |
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+          else
+            VERSION="$(tr -d '[:space:]' < VERSION)"
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Build release zip
+        shell: bash
+        run: |
+          APP_VERSION="${{ steps.version.outputs.version }}" BUILD_CHANNEL=release ./scripts/package-native-release.sh
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: v${{ steps.version.outputs.version }}
+          files: release-artifacts/B-Roll-Downloader-v${{ steps.version.outputs.version }}.zip
+          generate_release_notes: true
